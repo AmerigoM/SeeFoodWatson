@@ -8,10 +8,13 @@
 
 import UIKit
 import VisualRecognitionV3
+import SVProgressHUD
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topBarImageView: UIImageView!
+    @IBOutlet weak var shareButton: UIButton!
     
     let apiKey = "On8cJ4T8YdHkPqPYgMeM11KQ6uxQWjBmoB3zbXRhtHBA"
     let version = "2019-09-14"
@@ -21,11 +24,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shareButton.isHidden = true
         imagePicker.delegate = self
     }
     
     // tells the deleagte that the user picked a still image or a movie
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // disable the camera button
+        cameraButton.isEnabled = false
+        
+        // start a spinner
+        SVProgressHUD.show()
+        
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
             imagePicker.dismiss(animated: true, completion: nil)
@@ -60,13 +71,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 
                 // print(self.classificationResults)
                 
+                // re-enable the camera button and dismiss the spinner
+                DispatchQueue.main.async {
+                    self.cameraButton.isEnabled = true
+                    SVProgressHUD.dismiss()
+                    self.shareButton.isHidden = false
+                }
+                
                 if(self.classificationResults.contains("pizza")) {
                     DispatchQueue.main.async {
                         self.navigationItem.title = "Pizza!"
+                        self.navigationController?.navigationBar.barTintColor = UIColor.green
+                        self.navigationController?.navigationBar.isTranslucent = false
+                        self.topBarImageView.image = UIImage(named: "hotdog")
                     }
                 } else {
                     DispatchQueue.main.async {
                         self.navigationItem.title = "Not pizza!"
+                        self.navigationController?.navigationBar.barTintColor = UIColor.red
+                        self.navigationController?.navigationBar.isTranslucent = false
+                        self.topBarImageView.image = UIImage(named: "not-hotdog")
                     }
                 }
             }
@@ -84,6 +108,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func shareTapped(_ sender: UIButton) {
+        
+    }
 }
 
 /*

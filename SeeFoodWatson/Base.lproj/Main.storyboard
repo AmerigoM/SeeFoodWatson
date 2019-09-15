@@ -21,13 +21,39 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gp6-bh-sjx">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sQu-Vh-x5E">
+                                <rect key="frame" x="0.0" y="64" width="414" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="fQ6-i2-yC8"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6u-dM-UE8">
+                                <rect key="frame" x="137" y="622" width="141" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20778631425905061" green="0.84813909058121018" blue="0.98106676339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="shareTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Wq-VD-8LJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8ej-5B-UVb"/>
-                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="A5W-fW-XAz"/>
-                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Cxy-T4-27w"/>
-                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="huj-W5-Ass"/>
+                            <constraint firstItem="sQu-Vh-x5E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NXR-OV-roD"/>
+                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="R28-6e-rbG"/>
+                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UkD-lw-XGI"/>
+                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bt9-y0-ADo"/>
+                            <constraint firstItem="sQu-Vh-x5E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eCu-es-hBH"/>
+                            <constraint firstItem="Gp6-bh-sjx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mWZ-rN-LLQ"/>
+                            <constraint firstItem="sQu-Vh-x5E" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vKs-8f-P09"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -41,6 +67,8 @@
                     <connections>
                         <outlet property="cameraButton" destination="I4Z-Wh-7oS" id="sxc-si-8Yx"/>
                         <outlet property="imageView" destination="Gp6-bh-sjx" id="Qe8-Zw-BPs"/>
+                        <outlet property="shareButton" destination="t6u-dM-UE8" id="bbS-o1-DEB"/>
+                        <outlet property="topBarImageView" destination="sQu-Vh-x5E" id="SFH-xv-PgJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -55,6 +83,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vbe-hb-0Pe">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                            <color key="textColor" red="0.98106676339999999" green="0.92075301958819467" blue="0.11945885530884584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
