@@ -1,4 +1,4 @@
-# SeeFood
+# SeeFoodWatson
 A visual recognition iOS app capable of identifying pizza built using the IBM Watson service.
 
 ## Notes
