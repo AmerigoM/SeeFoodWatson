@@ -9,6 +9,7 @@
 import UIKit
 import VisualRecognitionV3
 import SVProgressHUD
+import Social
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -78,16 +79,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.shareButton.isHidden = false
                 }
                 
-                if(self.classificationResults.contains("pizza")) {
+                if(self.classificationResults.contains("hotdog")) {
                     DispatchQueue.main.async {
-                        self.navigationItem.title = "Pizza!"
+                        self.navigationItem.title = "Hotdog!"
                         self.navigationController?.navigationBar.barTintColor = UIColor.green
                         self.navigationController?.navigationBar.isTranslucent = false
                         self.topBarImageView.image = UIImage(named: "hotdog")
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.navigationItem.title = "Not pizza!"
+                        self.navigationItem.title = "Not hotdog!"
                         self.navigationController?.navigationBar.barTintColor = UIColor.red
                         self.navigationController?.navigationBar.isTranslucent = false
                         self.topBarImageView.image = UIImage(named: "not-hotdog")
@@ -109,7 +110,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareTapped(_ sender: UIButton) {
-        
+        let share = [UIImage(named: "hotdogBackground")]
+        let activityViewController = UIActivityViewController(activityItems: share as [Any], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
